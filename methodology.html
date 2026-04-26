@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Methodology of the Higher-Ed A/G Research Extension: IPEDS data sources, validated lane, G and A primitives, geometry choices, and validation design.">
+<title>Methodology — Higher-Ed A/G Research Extension</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site">
+  <div class="site-inner">
+    <div class="site-title">Higher-Ed A/G Research Extension
+      <small>A public IPEDS study of institutional closure risk in a validated higher-ed subdomain.</small>
+    </div>
+    <nav class="primary"><ul>
+      <li><a href="index.html">Overview</a></li>
+      <li><a class="active" href="methodology.html">Methodology</a></li>
+      <li><a href="validation.html">Validation</a></li>
+      <li><a href="evidence.html">Evidence</a></li>
+      <li><a href="limitations.html">Limitations</a></li>
+      <li><a href="commercial-use.html">Commercial use</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<main>
+
+<section>
+<h1>Methodology</h1>
+<p>The Higher-Ed A/G Research Extension applies a two-layer geometry — a Ground (<strong>G</strong>) layer of institutional financial structure and an Appearance (<strong>A</strong>) layer of institutional performance and continuation signals — to U.S. higher-education institutions, using public IPEDS data covering fiscal years 2014 through 2023.</p>
+</section>
+
+<section>
+<h2>1. Data sources</h2>
+<p>All inputs are real public NCES/IPEDS releases, fetched with documented provenance and SHA-256 fingerprints. No private data, no third-party scraping, and no synthetic substitution.</p>
+<ul>
+  <li><strong>HD</strong> — institutional directory (sector, control, level, Title-IV status, <code>CLOSEDAT</code>, <code>CYACTIVE</code>).</li>
+  <li><strong>F2 / FASB</strong> — finance for private nonprofit institutions.</li>
+  <li><strong>F1A / GASB</strong> — finance for public institutions.</li>
+  <li><strong>F3</strong> — finance for for-profit institutions.</li>
+  <li><strong>ADM</strong> — admissions counts (applied / admitted / enrolled).</li>
+  <li><strong>GR</strong> — graduation rates (bachelor’s 150 % cohort).</li>
+  <li><strong>EFFY</strong> — 12-month enrollment.</li>
+  <li><strong>HD <code>CLOSEDAT</code> / <code>CYACTIVE</code></strong> — closure year used to define the closure-within-five-years label.</li>
+</ul>
+<p>The federal Financial Responsibility composite score was fetched as a comparator via the Urban Institute Education Data Portal (a public mirror of federal data). Its coverage stops at 2016 in the public mirror, which limits how it can be compared with the locked test cohort. See <a href="docs/ed-fr-baseline.html">ED Financial Responsibility Baseline</a>.</p>
+</section>
+
+<section>
+<h2>2. Validated lane</h2>
+<p>The validated lane is <strong>FASB × Sector 2 — private nonprofit four-year institutions</strong>. This lane was selected because:</p>
+<ul>
+  <li>FASB-filed financial statements are internally comparable across institutions.</li>
+  <li>Bachelor’s-cohort graduation rates and admissions reporting are well populated for these institutions.</li>
+  <li>Closure events are observable and dated through HD <code>CLOSEDAT</code>.</li>
+</ul>
+<p>Other lanes were not validated:</p>
+<ul>
+  <li><strong>GASB / public sector institutions</strong> — closure events in public four-year institutions are very rare in the panel window; only enrollment-collapse targets could be tested, with mixed results.</li>
+  <li><strong>For-profit institutions</strong> — endowment-cushion is structurally absent for this family, and admissions/graduation reporting is sparser. The closure regime in this family also differs.</li>
+  <li><strong>Two-year and community-college institutions</strong> — graduation/admissions reporting is structured around different cohorts, and a two-year-appropriate Appearance layer has not been built.</li>
+</ul>
+</section>
+
+<section>
+<h2>3. G and A in higher education</h2>
+<p>The Ground layer summarises institutional financial structure: operating margin, net-position cushion, endowment cushion (where applicable), and leverage. These are computed family-specifically (FASB / GASB / for-profit) because the underlying chart of accounts differs across families. Cross-family numerical pooling is not performed.</p>
+<p>The Appearance layer summarises institutional performance and continuation: graduation rate, admissions selectivity, and yield. This Appearance layer is well defined for four-year selective lanes and is not extended to two-year sectors in this work.</p>
+<div class="limitation">
+  <strong>What this work does not use.</strong> No single-scalar composite is computed across the two layers. The corporate divergence/co-collapse vocabulary is not imported as a positive claim: the empirically dominant closure regime in the validated higher-ed lane is <em>joint weakness</em>, not divergence.
+</div>
+</section>
+
+<section>
+<h2>4. Geometry</h2>
+<p>The validated geometry is <strong>joint-weak G+A</strong> — institutions whose Ground and Appearance scores are both below their within-stratum medians. In the validated lane this geometry produced the strongest held-out closure AUROC and the strongest top-decile lift among the tested predictors.</p>
+<p>Two other geometries were tested:</p>
+<ul>
+  <li><strong>Divergence</strong> (Appearance minus Ground) — empirically the weakest predictor of closure in this lane.</li>
+  <li><strong>Single-layer scores</strong> (G-only and A-only) — informative but lower point estimates than joint-weak.</li>
+</ul>
+<p>For the secondary enrollment-collapse target, simple single-variable baselines (notably low six-year graduation rate) had higher point estimates than the A/G geometries. The Appearance-side baseline is competitive there and the A/G framework does not improve on it. This finding is reported honestly in the <a href="validation.html">validation</a> section.</p>
+</section>
+
+<section>
+<h2>5. Validation design</h2>
+<ul>
+  <li><strong>Closure-within-five-years label</strong> — built from HD <code>CLOSEDAT</code>: the label fires for an institution-year T when the institution’s closure year is in {T+1, …, T+5}. The label is strictly forward-looking; closures occurring at or before the observation year are excluded.</li>
+  <li><strong>Held-out time-block validation</strong> — train years are strictly earlier than test years.</li>
+  <li><strong>Train-only transform fitting</strong> — winsorisation bounds and robust-z parameters (median and MAD-based scale) are computed on training data only and applied to test data.</li>
+  <li><strong>Institution-cluster bootstrap</strong> — resamples UNITIDs at the cluster level so test rows of the same institution stay together. 1,000 resamples; reproducible RNG seed.</li>
+  <li><strong>Temporal multi-fold validation</strong> — four sliding train/test splits to test whether the result is specific to a single time window.</li>
+  <li><strong>No future leakage</strong> — features come from observation-year IPEDS records or earlier; no future-window data enters the predictor set.</li>
+</ul>
+</section>
+
+<section>
+<h2>6. What was not done</h2>
+<ul>
+  <li>No universal higher-ed validation. Other lanes were tested and either failed to support a claim or were excluded from scope.</li>
+  <li>No public-sector, two-year-sector, or for-profit-sector validity claim.</li>
+  <li>No live institution ranking, no institution-level published scores, and no operational risk listing.</li>
+  <li>No production model, no automated decision system, no calibrated probability.</li>
+  <li>No head-to-head comparison against the federal Financial Responsibility composite on the locked test cohort — the public mirror used here covers 2014–2016 while the locked test cohort is 2017–2018.</li>
+  <li>No HCM (Heightened Cash Monitoring) anchor — that source was not reachable in this run.</li>
+</ul>
+</section>
+
+</main>
+
+<footer class="site">
+  <div class="site-inner">
+    <p>Higher-Ed A/G Research Extension · Public research portal · No institution-level scores or rankings published.</p>
+    <p>Source data: U.S. Department of Education / NCES IPEDS (public). Derived presentation, scoring artifacts, compiled documentation, and research outputs are not granted for commercial reuse without permission. See <a href="commercial-use.html">Commercial use</a>.</p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="HCM Anchor Note for the Higher-Ed A/G Research Extension. Heightened Cash Monitoring as an alternative distress anchor; source-blocked in this run; documented as a candidate for future work.">
+<title>Heightened Cash Monitoring Anchor — Higher-Ed A/G Research Extension</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site">
+  <div class="site-inner">
+    <div class="site-title">Higher-Ed A/G Research Extension
+      <small>A public IPEDS study of institutional closure risk in a validated higher-ed subdomain.</small>
+    </div>
+    <nav class="primary"><ul>
+      <li><a href="../index.html">Overview</a></li>
+      <li><a href="../methodology.html">Methodology</a></li>
+      <li><a href="../validation.html">Validation</a></li>
+      <li><a class="active" href="../evidence.html">Evidence</a></li>
+      <li><a href="../limitations.html">Limitations</a></li>
+      <li><a href="../commercial-use.html">Commercial use</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<main>
+
+<section>
+<h1>Heightened Cash Monitoring Anchor</h1>
+<p><strong>Purpose.</strong> The federal Heightened Cash Monitoring (HCM) list places institutions under enhanced cash-disbursement oversight, often years before any closure. HCM placement is a separate distress signal from closure, with a different base rate and a different time profile. This track explored using HCM as a separate anchor for the higher-ed extension.</p>
+</section>
+
+<section>
+<h2>Outcome</h2>
+<div class="limitation">
+  <strong>Source-blocked in this run.</strong> Federal endpoints hosting the HCM list were not reachable from the build environment used for this work. The Urban Institute Education Data Portal — which provides the federal Financial Responsibility composite-score mirror — does not republish HCM. No alternative public mirror with HCM identifier-level data was located. As a result, no HCM evidence is incorporated into the locked claim.
+</div>
+</section>
+
+<section>
+<h2>What this track does NOT claim</h2>
+<ul>
+  <li>It does not claim HCM placement is or is not predicted by the higher-ed A/G geometry.</li>
+  <li>It does not claim HCM data was incorporated into any validated label.</li>
+  <li>It does not infer historical HCM dates from indirect sources or unofficial scrapes; the project rule against fabricated labels stays in force.</li>
+</ul>
+</section>
+
+<section>
+<h2>Future work</h2>
+<p>HCM remains a clean candidate for a future iteration. A future user with direct browser access to the federal HCM XLSX could:</p>
+<ol>
+  <li>Download the file from the federal source with documented provenance.</li>
+  <li>Resolve OPEID to UNITID using the project’s existing IPEDS HD crosswalk.</li>
+  <li>Define an HCM-placement label at panel year T per institution.</li>
+  <li>Run an HCM-as-target validation parallel to the closure validation, restricted to the same FASB × Sector 2 lane initially.</li>
+</ol>
+<p>That work would either confirm a separate HCM-relevant signal in the same geometry, or surface a different geometry winner for HCM and update the higher-ed regime taxonomy accordingly.</p>
+<p><a href="../evidence.html">← Back to Evidence</a></p>
+</section>
+
+</main>
+
+<footer class="site">
+  <div class="site-inner">
+    <p>Higher-Ed A/G Research Extension · Public research portal · No institution-level scores or rankings published.</p>
+    <p>Source data: U.S. Department of Education / NCES IPEDS (public). Derived presentation, scoring artifacts, compiled documentation, and research outputs are not granted for commercial reuse without permission. See <a href="../commercial-use.html">Commercial use</a>.</p>
+  </div>
+</footer>
+
+</body>
+</html>

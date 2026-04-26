@@ -1,0 +1,78 @@
+{
+  "title": "Higher-Ed A/G Research Extension",
+  "status": "LOCKED / partial domain-specific extension / hardened FASB × Sector 2 private nonprofit four-year closure prediction / not production",
+  "validated_lane": "FASB × Sector 2 private nonprofit four-year institutions",
+  "validated_target": "closure within five years",
+  "primary_geometry": "joint-weak G+A geometry",
+  "data_sources": [
+    "IPEDS HD institutional directory (2014–2023)",
+    "IPEDS F2 finance (FASB private nonprofit, 2014–2023)",
+    "IPEDS F1A finance (GASB public, 2014–2023)",
+    "IPEDS F3 finance (for-profit, 2014–2023)",
+    "IPEDS ADM admissions (2014–2023)",
+    "IPEDS GR graduation rates (2014–2023)",
+    "IPEDS EFFY 12-month enrollment (2014–2023)",
+    "ED Financial Responsibility composite via Urban Institute Education Data Portal API (2014–2016 train cohort only; descriptive)"
+  ],
+  "headline": {
+    "auroc_point": 0.864,
+    "cluster_bootstrap_ci_95": [0.806, 0.914],
+    "analytic_hanley_mcneil_ci_95": [0.801, 0.928],
+    "top_decile_lift": 5.96,
+    "test_cohort_base_rate": 0.024,
+    "test_cohort_rows": 3232,
+    "test_cohort_unique_unitids": 1644,
+    "closure_positive_rows": 117,
+    "closure_positive_unitids": 71
+  },
+  "temporal_folds": [
+    {"fold": "Fold1", "test_years": "2015", "joint_weak_auroc": 0.772, "joint_weak_ci_95": [0.653, 0.891], "best_baseline": "low six-year graduation rate", "baseline_auroc": 0.773},
+    {"fold": "Fold2", "test_years": "2016", "joint_weak_auroc": 0.840, "joint_weak_ci_95": [0.734, 0.946], "best_baseline": "low six-year graduation rate", "baseline_auroc": 0.788},
+    {"fold": "Fold3 (locked)", "test_years": "2017–2018", "joint_weak_auroc": 0.864, "joint_weak_ci_95": [0.801, 0.928], "best_baseline": "negated net-position cushion", "baseline_auroc": 0.792},
+    {"fold": "Fold4", "test_years": "2018", "joint_weak_auroc": 0.854, "joint_weak_ci_95": [0.768, 0.940], "best_baseline": "negated net-position cushion", "baseline_auroc": 0.797}
+  ],
+  "paired_bootstrap_difference_vs_strongest_baseline": {
+    "comparison": "joint_weak − negated net-position cushion",
+    "n_samples": 1000,
+    "mean_diff_auroc": 0.072,
+    "ci_95_lower": 0.002,
+    "ci_95_upper": 0.138,
+    "fraction_positive": 0.980,
+    "interpretation": "higher AUROC point estimate; not a definitive statistical-superiority claim"
+  },
+  "lead_time": {
+    "horizon_years": [1, 2, 3, 4, 5],
+    "median_joint_weak_score_range": [0.85, 1.10],
+    "top_decile_capture_rate_range": [0.13, 0.27],
+    "interpretation": "multi-year early-warning pattern, not a coincident T-1 alarm"
+  },
+  "ed_financial_responsibility": {
+    "head_to_head_test_cohort_runnable": false,
+    "reason": "public mirror covers 2006–2016; locked test cohort is 2017–2018",
+    "descriptive_train_cohort_auroc": 0.747,
+    "descriptive_train_cohort_ci_95": [0.686, 0.808],
+    "interpretation": "ED FR is a real closure predictor on the train cohort; head-to-head superiority claim against A/G is not testable in this run."
+  },
+  "hcm": {
+    "status": "source-blocked in this sandbox; documented as Phase-20 candidate"
+  },
+  "claim_boundary": {
+    "allowed": [
+      "FASB × Sector 2 closure-within-5y validated result",
+      "joint-weak G+A geometry as the dominant closure regime in this lane",
+      "multi-year early-warning structure",
+      "research-grade evidence within the validated lane"
+    ],
+    "forbidden": [
+      "universal higher-ed validation",
+      "college-failure prediction product",
+      "institutional ranking",
+      "production / automated decision",
+      "accreditation / admissions / investment / credit-rating tool",
+      "definitive statistical superiority over baselines",
+      "A/G beats ED FR on the locked test cohort",
+      "public, for-profit, two-year, or community-college validity",
+      "perfect early warning"
+    ]
+  }
+}

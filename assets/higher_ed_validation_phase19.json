@@ -1,0 +1,58 @@
+{
+  "phase": "Phase 19 hardening",
+  "decision": "LOCKED / partial domain-specific extension / hardened FASB × Sector 2 private nonprofit four-year closure prediction / not production",
+  "validated_lane": "FASB × Sector 2 private nonprofit four-year institutions",
+  "validated_target": "closure within five years",
+  "tracks": {
+    "cluster_bootstrap": {
+      "design": "1,000 institution-level resamples on the locked test cohort (3,232 rows / 1,644 unique UNITIDs / 117 closure-positive rows / 71 closure-positive UNITIDs); rng seed 20260425.",
+      "predictors": ["joint-weak G+A", "G-only", "A-only", "divergence", "negated net-position cushion", "negated cash operating margin", "negated six-year graduation rate"],
+      "joint_weak_auroc_point": 0.864,
+      "joint_weak_ci_95": [0.806, 0.914],
+      "comparison_with_analytic_hanley_mcneil": [0.801, 0.928],
+      "paired_difference_vs_negated_cushion_mean": 0.072,
+      "paired_difference_ci_95": [0.002, 0.138],
+      "paired_difference_fraction_positive": 0.980,
+      "paired_difference_vs_low_grad_rate_mean": 0.105,
+      "paired_difference_vs_low_grad_rate_ci_95": [0.022, 0.181],
+      "interpretation": "Cluster-bootstrap CI confirms the lock; paired-difference vs the strongest baseline is positive but its lower bound is +0.002 — higher point estimate, not definitive superiority."
+    },
+    "temporal_multi_fold": {
+      "design": "Four sliding train/test time-block folds on the FASB × Sector 2 panel; closure label requires T+5 ≤ 2023, so testable years are 2015–2018.",
+      "folds": [
+        {"name": "Fold1", "train": "2014", "test": "2015", "n_test": 1075, "n_pos": 21, "joint_weak_auroc": 0.772},
+        {"name": "Fold2", "train": "2014–2015", "test": "2016", "n_test": 1070, "n_pos": 21, "joint_weak_auroc": 0.840},
+        {"name": "Fold3 (locked)", "train": "2014–2016", "test": "2017–2018", "n_test": 2168, "n_pos": 52, "joint_weak_auroc": 0.864},
+        {"name": "Fold4", "train": "2014–2017", "test": "2018", "n_test": 1080, "n_pos": 30, "joint_weak_auroc": 0.854}
+      ],
+      "interpretation": "joint-weak AUROC stays in [0.77, 0.86] across all four folds; tied with simple low-grad-rate baseline in Fold1; A/G has higher point estimate than best baseline by +0.05–0.07 in Folds 2/3/4."
+    },
+    "ed_financial_responsibility": {
+      "design": "Descriptive baseline comparator on the FASB × Sector 2 train cohort 2014–2016; 4,495 institution-years × 84 closure-positive rows.",
+      "source": "Urban Institute Education Data Portal API (federal mirror); coverage 2006–2016.",
+      "head_to_head_test_cohort_runnable": false,
+      "ed_fr_train_cohort_auroc": 0.747,
+      "ed_fr_train_cohort_ci_95": [0.686, 0.808],
+      "low_grad_rate_train_cohort_auroc": 0.788,
+      "interpretation": "ED FR is a real closure predictor; head-to-head test on the locked 2017–2018 cohort is not runnable due to data-coverage gap."
+    },
+    "hcm_anchor": {
+      "design": "Attempted public-data fetch of the federal Heightened Cash Monitoring list.",
+      "result": "source-blocked in this sandbox (federal endpoints not reachable; Urban does not republish HCM; data.gov has no canonical HCM dataset).",
+      "interpretation": "no HCM evidence added or subtracted; documented as Phase-20 candidate."
+    },
+    "closure_lead_time": {
+      "design": "108 FASB × Sector 2 closures; pre-closure rows scored T-1 through T-5 with the locked Phase-15 transforms.",
+      "median_joint_weak_by_horizon": {"T-1": 0.888, "T-2": 0.846, "T-3": 0.996, "T-4": 1.097, "T-5": 0.941},
+      "top_decile_capture_rate_by_horizon": {"T-1": 0.130, "T-2": 0.185, "T-3": 0.200, "T-4": 0.269, "T-5": 0.258},
+      "interpretation": "joint-weak signal is detectable as early as T-5; multi-year early-warning, not a late-stage acute alarm."
+    }
+  },
+  "boundary": {
+    "definitive_superiority_claim": false,
+    "ed_fr_test_cohort_comparison_runnable": false,
+    "hcm_evidence_present": false,
+    "non_fasb_sector_2_validity_claimed": false,
+    "production_claim": false
+  }
+}

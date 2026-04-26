@@ -1,0 +1,30 @@
+{
+  "groups": [
+    {
+      "label": "Start here",
+      "documents": [
+        {"public_title": "Final Lock Note", "internal_title": "HIGHER_ED_FINAL_LOCK_NOTE_PHASE19_UPDATED", "href": "docs/final-lock.html", "summary": "Plain-language summary of what the higher-ed extension is, what it is not, the validated lane, the headline result, and the Phase-19 hardening evidence."},
+        {"public_title": "Claim Boundary Note", "internal_title": "HIGHER_ED_CLAIM_BOUNDARY_NOTE_PHASE19_UPDATED", "href": "docs/claim-boundary.html", "summary": "Canonical allowed and forbidden claims; 13-item boundary checklist that must accompany any external restatement of the result."},
+        {"public_title": "Phase 19 Hardening Decision", "internal_title": "HE_PHASE19_HARDENING_DECISION_NOTE", "href": "docs/phase19-decision.html", "summary": "Integrated decision across the five Phase-19 hardening tracks; final classification and recommended next focus."}
+      ]
+    },
+    {
+      "label": "Core validation",
+      "documents": [
+        {"public_title": "Cluster Bootstrap", "internal_title": "HE_PHASE19_CLUSTER_BOOTSTRAP_NOTE", "href": "docs/cluster-bootstrap.html", "summary": "Institution-cluster (UNITID) bootstrap of the closure AUROC; cluster CI [0.806, 0.914] vs analytic [0.801, 0.928]; paired-difference distribution vs the strongest baseline."},
+        {"public_title": "Temporal Folds", "internal_title": "HE_PHASE19_TEMPORAL_FOLDS_NOTE", "href": "docs/temporal-folds.html", "summary": "Four sliding train/test time-block folds; joint-weak AUROC 0.77–0.86 across folds; honest record of Fold1 baseline tie."},
+        {"public_title": "Closure Lead-Time", "internal_title": "HE_PHASE19_CLOSURE_LEAD_TIME_ANALYSIS", "href": "docs/lead-time.html", "summary": "Score distributions and top-decile capture rates at T-1 through T-5 for FASB × Sector 2 closures."},
+        {"public_title": "ED Financial Responsibility Baseline", "internal_title": "HE_PHASE19_ED_FINANCIAL_RESPONSIBILITY_BASELINE", "href": "docs/ed-fr-baseline.html", "summary": "Descriptive comparator on the train cohort 2014–2016; head-to-head on the locked test cohort not runnable due to data-coverage gap."},
+        {"public_title": "Heightened Cash Monitoring Anchor", "internal_title": "HE_PHASE19_HCM_ANCHOR_NOTE", "href": "docs/hcm-anchor.html", "summary": "HCM source-blocked in this run; documented as Phase-20 candidate; no HCM evidence added."}
+      ]
+    },
+    {
+      "label": "Reproducibility & evidence index",
+      "documents": [
+        {"public_title": "Artifact Index", "internal_title": "HIGHER_ED_ARTIFACT_INDEX", "href": "docs/index.html", "summary": "Inventory of higher-ed phase artifacts marked CURRENT, HISTORICAL, or SUPERSEDED."},
+        {"public_title": "Evidence Packet Manifest", "internal_title": "HIGHER_ED_EVIDENCE_PACKET_MANIFEST_PHASE19_UPDATED", "href": "docs/index.html", "summary": "Curated minimum-evidence packet (13 items) and exclude-from-review-packets list."},
+        {"public_title": "Reproducibility Runbook", "internal_title": "HIGHER_ED_REPRODUCIBILITY_RUNBOOK", "href": "docs/index.html", "summary": "End-to-end re-run instructions and the lock-evidence pipeline subset."}
+      ]
+    }
+  ]
+}

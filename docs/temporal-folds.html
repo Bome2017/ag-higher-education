@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Temporal Folds summary for the Higher-Ed A/G Research Extension. Four sliding train/test time-block splits to test whether the closure result survives multiple time windows.">
+<title>Temporal Folds — Higher-Ed A/G Research Extension</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site">
+  <div class="site-inner">
+    <div class="site-title">Higher-Ed A/G Research Extension
+      <small>A public IPEDS study of institutional closure risk in a validated higher-ed subdomain.</small>
+    </div>
+    <nav class="primary"><ul>
+      <li><a href="../index.html">Overview</a></li>
+      <li><a href="../methodology.html">Methodology</a></li>
+      <li><a href="../validation.html">Validation</a></li>
+      <li><a class="active" href="../evidence.html">Evidence</a></li>
+      <li><a href="../limitations.html">Limitations</a></li>
+      <li><a href="../commercial-use.html">Commercial use</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<main>
+
+<section>
+<h1>Temporal Folds</h1>
+<p><strong>Purpose.</strong> The original locked validation used a single train/test time-block split. This track tests whether the closure signal survives across multiple sliding splits — that is, whether the result is specific to the locked 2017–2018 test window or holds more broadly.</p>
+</section>
+
+<section>
+<h2>Method</h2>
+<ul>
+  <li>Restricted to FASB × Sector 2; target = closure within five years.</li>
+  <li>Closure label requires a five-year forward window, so the latest testable observation year is 2018 (T+5 ≤ 2023). This bounds the available folds.</li>
+  <li>Four sliding folds, each with disjoint train and test years; transforms refit on the fold’s train years only.</li>
+  <li>Same predictors as the cluster-bootstrap track (joint-weak, G-only, A-only, divergence, three single-variable baselines).</li>
+</ul>
+</section>
+
+<section>
+<h2>Per-fold AUROC for joint-weak G+A</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Fold</th><th>Train years</th><th>Test years</th><th class="num">Test rows</th><th class="num">Closure positives</th><th class="num">Joint-weak AUROC</th></tr></thead>
+<tbody>
+<tr><td>Fold 1</td><td>2014</td><td>2015</td><td class="num">1,075</td><td class="num">21</td><td class="num">0.772</td></tr>
+<tr><td>Fold 2</td><td>2014–2015</td><td>2016</td><td class="num">1,070</td><td class="num">21</td><td class="num">0.840</td></tr>
+<tr><td>Fold 3 (locked)</td><td>2014–2016</td><td>2017–2018</td><td class="num">2,168</td><td class="num">52</td><td class="num">0.864</td></tr>
+<tr><td>Fold 4</td><td>2014–2017</td><td>2018</td><td class="num">1,080</td><td class="num">30</td><td class="num">0.854</td></tr>
+</tbody>
+</table>
+</div>
+<p>Joint-weak AUROC stays in [0.77, 0.86] across all four folds; lower CI &gt; 0.65 in every fold. Within-A/G ordering (joint-weak above G-only above A-only above divergence) holds in every fold.</p>
+</section>
+
+<section>
+<h2>A/G edge over the strongest baseline</h2>
+<ul>
+  <li>Fold 1 (2015 test): joint-weak ≈ 0.772; the simple low six-year graduation rate baseline ≈ 0.773. <strong>Essentially tied.</strong></li>
+  <li>Fold 2 (2016 test): joint-weak ≈ 0.840; best baseline ≈ 0.788. Δ ≈ +0.05.</li>
+  <li>Fold 3 (2017–2018 test, the locked split): joint-weak ≈ 0.864; best baseline ≈ 0.792. Δ ≈ +0.07.</li>
+  <li>Fold 4 (2018 test): joint-weak ≈ 0.854; best baseline ≈ 0.797. Δ ≈ +0.06.</li>
+</ul>
+<div class="limitation">
+  <strong>Honest record on Fold 1.</strong> The A/G geometry’s point-estimate edge over single-variable baselines is uneven across folds. In three of four folds the edge is +0.05 to +0.07. In Fold 1 the edge effectively disappears because the simple six-year graduation rate already captures most of the closure signal in that early test window. Phase 19 records this rather than choosing a more favourable fold to headline.
+</div>
+</section>
+
+<section>
+<h2>Pooled fold summary</h2>
+<p>A pooled-across-folds metric is intentionally not headlined because Folds 3 and 4 share year 2018 — pooling would double-count. Per-fold reporting is the honest framing.</p>
+<ul>
+  <li>4 of 4 folds show joint-weak AUROC ≥ 0.77 with lower CI &gt; 0.65.</li>
+  <li>3 of 4 folds (2, 3, 4) show A/G higher point estimate than the best single-variable baseline by +0.05 to +0.07.</li>
+  <li>1 of 4 folds (Fold 1, 2015 test) shows A/G essentially tied with the simplest A-only baseline.</li>
+</ul>
+</section>
+
+<section>
+<h2>Limitations</h2>
+<ul>
+  <li>Folds 1, 2, and 4 use shorter / single-year test windows (21–30 closure positives). Per-fold CIs are wider than the locked Fold-3 CI as a result.</li>
+  <li>Per-fold reporting uses analytic Hanley-McNeil intervals. Cluster-bootstrap uncertainty is computed only for Fold 3 (the locked split) and reported in the <a href="cluster-bootstrap.html">Cluster Bootstrap</a> note.</li>
+  <li>The Phase-12.5 panel is the same for every fold; only train/test years rotate.</li>
+</ul>
+<p><a href="../evidence.html">← Back to Evidence</a></p>
+</section>
+
+</main>
+
+<footer class="site">
+  <div class="site-inner">
+    <p>Higher-Ed A/G Research Extension · Public research portal · No institution-level scores or rankings published.</p>
+    <p>Source data: U.S. Department of Education / NCES IPEDS (public). Derived presentation, scoring artifacts, compiled documentation, and research outputs are not granted for commercial reuse without permission. See <a href="../commercial-use.html">Commercial use</a>.</p>
+  </div>
+</footer>
+
+</body>
+</html>

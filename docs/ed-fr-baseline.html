@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="ED Financial Responsibility composite-score comparator for the Higher-Ed A/G Research Extension. Descriptive train-cohort comparison; head-to-head test on the locked test cohort is not runnable due to a data-coverage gap.">
+<title>ED Financial Responsibility Baseline — Higher-Ed A/G Research Extension</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site">
+  <div class="site-inner">
+    <div class="site-title">Higher-Ed A/G Research Extension
+      <small>A public IPEDS study of institutional closure risk in a validated higher-ed subdomain.</small>
+    </div>
+    <nav class="primary"><ul>
+      <li><a href="../index.html">Overview</a></li>
+      <li><a href="../methodology.html">Methodology</a></li>
+      <li><a href="../validation.html">Validation</a></li>
+      <li><a class="active" href="../evidence.html">Evidence</a></li>
+      <li><a href="../limitations.html">Limitations</a></li>
+      <li><a href="../commercial-use.html">Commercial use</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<main>
+
+<section>
+<h1>ED Financial Responsibility Baseline</h1>
+<p><strong>Purpose.</strong> The U.S. Department of Education publishes an annual financial-responsibility composite score for institutions filing audited financial statements. The composite is the obvious regulator-side comparator for any institutional-distress signal. This track tests how the higher-ed A/G geometry compares.</p>
+</section>
+
+<section>
+<h2>Source path</h2>
+<p>The federal data was fetched via the Urban Institute Education Data Portal API (<code>educationdata.urban.org</code>), which mirrors federal U.S. Department of Education / Federal Student Aid releases under public-domain terms. The mirror exposes the financial-responsibility composite at the path <code>/api/v1/college-university/fsa/financial-responsibility/{year}/</code> with a direct <code>unitid</code> identifier, removing the need for an OPEID-to-UNITID crosswalk.</p>
+<p><strong>Coverage in the public mirror used here:</strong> 2006–2016. Records returned per fetched year (2014 / 2015 / 2016): 3,396 / 3,709 / 3,627. Data dictionary fields include <code>unitid</code>, <code>year</code>, <code>opeid</code>, <code>inst_name_fsa</code>, and the headline <code>financial_resp_score</code>.</p>
+</section>
+
+<section>
+<h2>Findings</h2>
+<div class="limitation">
+  <strong>Head-to-head on the locked test cohort is not runnable.</strong> The locked test cohort years are 2017–2018; the public mirror used here stops at 2016. We therefore cannot run an apples-to-apples test on the locked cohort. What we can do is run a descriptive comparison on the train cohort (2014–2016).
+</div>
+<p>On the FASB × Sector 2 train cohort (2014–2016, 4,495 institution-years with composite scores joined; 84 closure-positive rows; 92 % join rate):</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Predictor</th><th class="num">AUROC (train cohort)</th><th>95 % CI (analytic)</th></tr></thead>
+<tbody>
+<tr><td>Federal composite, sign-flipped</td><td class="num">0.747</td><td>[0.686, 0.808]</td></tr>
+<tr><td>Negated net-position cushion</td><td class="num">0.643</td><td>[0.579, 0.708]</td></tr>
+<tr><td>Negated cash operating margin</td><td class="num">0.631</td><td>[0.566, 0.695]</td></tr>
+<tr><td>Negated low six-year graduation rate</td><td class="num">0.788</td><td>[0.718, 0.859]</td></tr>
+</tbody>
+</table>
+</div>
+<p>The federal composite is a real closure-relevant signal on this descriptive train cohort. Within the same train cohort, the simple low six-year graduation rate baseline has a slightly higher point estimate.</p>
+</section>
+
+<section>
+<h2>What is and is not claimed</h2>
+<ul>
+  <li>The federal composite is a meaningful closure-relevant signal in the validated lane on the descriptive cohort.</li>
+  <li>Whether the higher-ed A/G geometry beats the federal composite on the locked test cohort is <strong>not testable</strong> in this run.</li>
+  <li>The comparison numbers above are descriptive and on a different cohort from the locked headline AUROC. They are not directly comparable to that locked AUROC.</li>
+  <li>This site does <strong>not</strong> assert that the A/G geometry outperforms the federal composite.</li>
+</ul>
+</section>
+
+<section>
+<h2>What would close the gap</h2>
+<p>A future iteration with direct access to federal Financial Responsibility data covering the locked test cohort years (2017–2018 or later) would let us compute joint-weak and the federal composite on the same held-out cohort and report a paired difference, in the same way the cluster-bootstrap track reports the paired difference vs single-variable baselines.</p>
+<p><a href="../evidence.html">← Back to Evidence</a></p>
+</section>
+
+</main>
+
+<footer class="site">
+  <div class="site-inner">
+    <p>Higher-Ed A/G Research Extension · Public research portal · No institution-level scores or rankings published.</p>
+    <p>Source data: U.S. Department of Education / NCES IPEDS (public). Derived presentation, scoring artifacts, compiled documentation, and research outputs are not granted for commercial reuse without permission. See <a href="../commercial-use.html">Commercial use</a>.</p>
+  </div>
+</footer>
+
+</body>
+</html>

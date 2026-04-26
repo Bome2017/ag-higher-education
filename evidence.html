@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Public evidence index for the Higher-Ed A/G Research Extension. Reader-facing summaries of the locked decision, claim boundary, validation tracks, lead-time analysis, and reproducibility artifacts.">
+<title>Evidence — Higher-Ed A/G Research Extension</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site">
+  <div class="site-inner">
+    <div class="site-title">Higher-Ed A/G Research Extension
+      <small>A public IPEDS study of institutional closure risk in a validated higher-ed subdomain.</small>
+    </div>
+    <nav class="primary"><ul>
+      <li><a href="index.html">Overview</a></li>
+      <li><a href="methodology.html">Methodology</a></li>
+      <li><a href="validation.html">Validation</a></li>
+      <li><a class="active" href="evidence.html">Evidence</a></li>
+      <li><a href="limitations.html">Limitations</a></li>
+      <li><a href="commercial-use.html">Commercial use</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<main>
+
+<section>
+<h1>Evidence</h1>
+<p>This page indexes the reader-facing summaries of the documents behind the locked higher-ed result. The summaries are written for a non-internal audience; the full markdown source documents stay in the project repository for reviewers who need the raw record.</p>
+<p>No institution-level scores, no institution-level rankings, and no raw IPEDS data are linked from this page. The aggregated validation tables (cohort-level metrics, fold AUROCs, regime base rates) are summarised in each document’s page.</p>
+</section>
+
+<section class="evidence-group">
+<h2>Start here</h2>
+<div class="evidence-list">
+  <div class="evidence-item">
+    <h3>Final Lock Note</h3>
+    <p>Plain-language summary of what the higher-ed extension is, what it is not, the validated lane, the headline result, and the Phase-19 hardening evidence.</p>
+    <a href="docs/final-lock.html">Read the Final Lock Note →</a>
+  </div>
+  <div class="evidence-item">
+    <h3>Claim Boundary Note</h3>
+    <p>Canonical allowed and forbidden claims. Includes the boundary checklist that must accompany any external restatement of the result.</p>
+    <a href="docs/claim-boundary.html">Read the Claim Boundary Note →</a>
+  </div>
+  <div class="evidence-item">
+    <h3>Phase 19 Hardening Decision</h3>
+    <p>Integrated decision across the five Phase-19 hardening tracks: cluster bootstrap, temporal multi-fold, ED Financial Responsibility comparator, HCM source-blocked, lead-time analysis.</p>
+    <a href="docs/phase19-decision.html">Read the Phase 19 Decision →</a>
+  </div>
+</div>
+</section>
+
+<section class="evidence-group">
+<h2>Core validation</h2>
+<div class="evidence-list">
+  <div class="evidence-item">
+    <h3>Cluster Bootstrap</h3>
+    <p>Institution-level (UNITID) bootstrap of the closure AUROC. Cluster-bootstrap 95 % CI compared with the original analytic Hanley-McNeil interval, plus paired-difference distribution against the strongest tested single-variable baseline.</p>
+    <a href="docs/cluster-bootstrap.html">Read the Cluster Bootstrap Note →</a>
+  </div>
+  <div class="evidence-item">
+    <h3>Temporal Folds</h3>
+    <p>Four sliding train/test time-block folds. Joint-weak AUROC stays in [0.77, 0.86] across all four folds; honest record of the Fold-1 baseline tie.</p>
+    <a href="docs/temporal-folds.html">Read the Temporal Folds Note →</a>
+  </div>
+  <div class="evidence-item">
+    <h3>Closure Lead-Time</h3>
+    <p>Score distributions at T-1 through T-5 for the closing FASB × Sector 2 institutions, and the top-decile capture rate by years-to-closure.</p>
+    <a href="docs/lead-time.html">Read the Lead-Time Analysis →</a>
+  </div>
+  <div class="evidence-item">
+    <h3>ED Financial Responsibility Baseline</h3>
+    <p>The federal composite score as a comparator on the descriptive train cohort. Head-to-head test on the locked cohort is not runnable due to a data-coverage gap.</p>
+    <a href="docs/ed-fr-baseline.html">Read the ED FR Baseline Note →</a>
+  </div>
+  <div class="evidence-item">
+    <h3>Heightened Cash Monitoring Anchor</h3>
+    <p>Source-blocked in this run; documented as a candidate for future work. No HCM evidence is incorporated into the locked claim.</p>
+    <a href="docs/hcm-anchor.html">Read the HCM Anchor Note →</a>
+  </div>
+</div>
+</section>
+
+<section class="evidence-group">
+<h2>Reproducibility &amp; evidence index</h2>
+<div class="evidence-list">
+  <div class="evidence-item">
+    <h3>Artifact Index</h3>
+    <p>Inventory of higher-ed phase artifacts marked CURRENT, HISTORICAL, or SUPERSEDED so a reader can tell what is the current evidence and what is preserved as historical record.</p>
+    <a href="docs/index.html">Open the Artifact Index →</a>
+  </div>
+  <div class="evidence-item">
+    <h3>Evidence Packet Manifest</h3>
+    <p>The 13-item minimum-evidence packet, plus the exclude-from-review-packets list (raw IPEDS files and the full panel CSV are excluded by default).</p>
+    <a href="docs/index.html">Open the Evidence Packet Manifest →</a>
+  </div>
+  <div class="evidence-item">
+    <h3>Reproducibility Runbook</h3>
+    <p>End-to-end re-run instructions and the lock-evidence pipeline subset (Phases 12.5 → 17) needed to verify the headline result.</p>
+    <a href="docs/index.html">Open the Reproducibility Runbook →</a>
+  </div>
+</div>
+</section>
+
+</main>
+
+<footer class="site">
+  <div class="site-inner">
+    <p>Higher-Ed A/G Research Extension · Public research portal · No institution-level scores or rankings published.</p>
+    <p>Source data: U.S. Department of Education / NCES IPEDS (public). Derived presentation, scoring artifacts, compiled documentation, and research outputs are not granted for commercial reuse without permission. See <a href="commercial-use.html">Commercial use</a>.</p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Limitations and scope statement for the Higher-Ed A/G Research Extension. What this work is not, where it does not apply, and what would justify reopening higher-ed.">
+<title>Limitations — Higher-Ed A/G Research Extension</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site">
+  <div class="site-inner">
+    <div class="site-title">Higher-Ed A/G Research Extension
+      <small>A public IPEDS study of institutional closure risk in a validated higher-ed subdomain.</small>
+    </div>
+    <nav class="primary"><ul>
+      <li><a href="index.html">Overview</a></li>
+      <li><a href="methodology.html">Methodology</a></li>
+      <li><a href="validation.html">Validation</a></li>
+      <li><a href="evidence.html">Evidence</a></li>
+      <li><a class="active" href="limitations.html">Limitations</a></li>
+      <li><a href="commercial-use.html">Commercial use</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<main>
+
+<section>
+<h1>Limitations</h1>
+<p>This page records the boundaries on what this research extension is, what it does not do, and what would have to change before its scope could expand. It is meant to be read alongside the <a href="docs/claim-boundary.html">Claim Boundary Note</a>.</p>
+</section>
+
+<section>
+<h2>1. What this is not</h2>
+<div class="boundary">
+  This research extension is <strong>not</strong> a universal higher-ed model, <strong>not</strong> a college-failure prediction product, <strong>not</strong> a production model, <strong>not</strong> an accreditation tool, <strong>not</strong> an admissions tool, <strong>not</strong> investment advice, <strong>not</strong> a credit rating, <strong>not</strong> an institutional ranking, and <strong>not</strong> an automated decision system. It does not publish per-institution scores or per-institution risk lists.
+</div>
+</section>
+
+<section>
+<h2>2. Main limitations</h2>
+<ul>
+  <li><strong>Validated only for FASB × Sector 2 private nonprofit four-year closure within five years.</strong> Other accounting families, sectors, levels, and targets are out of scope or unvalidated.</li>
+  <li><strong>Public, for-profit, and two-year applicability is unvalidated.</strong> The Appearance layer used here is structured around four-year cohorts and admissions reporting, which do not map cleanly to those institution types.</li>
+  <li><strong>Enrollment-collapse targets are baseline-dominated.</strong> The simple six-year graduation rate alone has a higher AUROC point estimate than the A/G geometries for those targets. Read this as a prognostic result for that endpoint; the diagnostic claim that joint weakness is the closure regime in the FASB × Sector 2 lane is a separate, narrowly-supported claim and is not extended to enrollment collapse.</li>
+  <li><strong>ED Financial Responsibility comparison is unavailable on the locked test cohort.</strong> The public mirror used here covers years through 2016; the locked test cohort is 2017–2018. The descriptive train-cohort comparison is informative but not a head-to-head test.</li>
+  <li><strong>Heightened Cash Monitoring (HCM) is source-blocked.</strong> The federal endpoints hosting the list were not reachable from the build environment, and no public mirror is available in the same data portal used for the financial-responsibility comparator.</li>
+  <li><strong>Lead-time signal is partial.</strong> At the locked top-decile cutoff, only about 13–27 % of pre-closure rows across T-1 through T-5 are flagged. This is a useful precision–recall trade, not a perfect screen.</li>
+  <li><strong>Closure is only one institutional-stress outcome.</strong> Mergers, consolidations, and accreditor sanctions are not separately modelled. The closure-derived label may treat absorbed entities of mergers as closed.</li>
+  <li><strong>IPEDS accounting-family differences matter.</strong> FASB, GASB, and for-profit (F3) finance files use different charts of accounts; cross-family numerical pooling is prohibited and was not performed.</li>
+  <li><strong>Single-time-block locked split.</strong> The original Phase-15 lock used a single train/test split; multi-fold temporal hardening was added in Phase-19, but the design is still time-block, not multi-fold cross-validated.</li>
+  <li><strong>Cluster-bootstrap CI is informative but conservative-leaning.</strong> Test rows of the same institution are correctly held together; this is the appropriate uncertainty model for repeated-institution panels but does not address other forms of model misspecification.</li>
+</ul>
+</section>
+
+<section>
+<h2>3. Why it is still worth keeping</h2>
+<ul>
+  <li>The closure signal is strong within the validated lane and survives the strongest hardening tracks attempted: institution-cluster bootstrap and four sliding temporal folds.</li>
+  <li>The two-layer A/G structure cleanly separates institutional financial ground from institutional appearance and produces an interpretable regime taxonomy (joint-weak as the closure regime).</li>
+  <li>The work uses entirely public IPEDS data with documented provenance and SHA-256 fingerprints, and is reproducible from code.</li>
+  <li>The result records a non-trivial empirical finding: the divergence-style geometry that works for some other domains is the <em>weakest</em> predictor here. Joint weakness is the higher-ed regime, and that finding is preserved without overgeneralisation.</li>
+</ul>
+</section>
+
+<section>
+<h2>4. What would justify reopening higher-ed</h2>
+<ul>
+  <li>An official or current ED Financial Responsibility comparison covering the locked test cohort years (2017–2018 or later), to enable a head-to-head test against the A/G geometry.</li>
+  <li>Direct access to the federal Heightened Cash Monitoring list, allowing HCM-as-anchor validation as a separate distress target.</li>
+  <li>A public-sector submodel (institutional public-finance composites and continuation signals) for GASB-filing institutions.</li>
+  <li>A two-year / community-college submodel using the Outcome Measures (OM) survey and completions data to define an Appearance layer suited to that cohort design.</li>
+  <li>A for-profit submodel that respects the structural absence of endowment cushion and the different revenue mix.</li>
+  <li>A historical lead-time case-study packet — anonymised or reviewed for sensitivity — to test the multi-year early-warning structure on closed institutions.</li>
+  <li>External validation against an outcome other than IPEDS closure dates (for example accreditor sanction lists or federal composite-score thresholds), where source data permits.</li>
+</ul>
+</section>
+
+</main>
+
+<footer class="site">
+  <div class="site-inner">
+    <p>Higher-Ed A/G Research Extension · Public research portal · No institution-level scores or rankings published.</p>
+    <p>Source data: U.S. Department of Education / NCES IPEDS (public). Derived presentation, scoring artifacts, compiled documentation, and research outputs are not granted for commercial reuse without permission. See <a href="commercial-use.html">Commercial use</a>.</p>
+  </div>
+</footer>
+
+</body>
+</html>

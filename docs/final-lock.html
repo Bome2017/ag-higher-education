@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Plain-language Final Lock Note for the Higher-Ed A/G Research Extension. Locked classification, validated lane, headline result, geometry role, and Phase-19 hardening summary.">
+<title>Final Lock Note — Higher-Ed A/G Research Extension</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site">
+  <div class="site-inner">
+    <div class="site-title">Higher-Ed A/G Research Extension
+      <small>A public IPEDS study of institutional closure risk in a validated higher-ed subdomain.</small>
+    </div>
+    <nav class="primary"><ul>
+      <li><a href="../index.html">Overview</a></li>
+      <li><a href="../methodology.html">Methodology</a></li>
+      <li><a href="../validation.html">Validation</a></li>
+      <li><a class="active" href="../evidence.html">Evidence</a></li>
+      <li><a href="../limitations.html">Limitations</a></li>
+      <li><a href="../commercial-use.html">Commercial use</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<main>
+
+<section>
+<h1>Final Lock Note</h1>
+<p><strong>Status:</strong> locked partial domain-specific extension; hardened FASB × Sector 2 private nonprofit four-year closure prediction; not production.</p>
+</section>
+
+<section>
+<h2>Summary</h2>
+<p>The Higher-Ed A/G Research Extension is a research-grade public-data study. It applies a two-layer geometry — Ground (institutional finance) and Appearance (institutional performance and continuation signals) — to U.S. higher-education institutions, using IPEDS data 2014–2023. The validated lane is intentionally narrow: FASB-filing private nonprofit four-year institutions, evaluated for closure within five years.</p>
+</section>
+
+<section>
+<h2>Validated lane</h2>
+<ul>
+  <li>Accounting family: FASB (private nonprofit financial reporting).</li>
+  <li>HD sector: Sector 2 (private nonprofit four-year).</li>
+  <li>Target: closure within five years (forward window from observation year T; closure year ∈ {T+1, …, T+5}).</li>
+  <li>Primary geometry: joint-weak G+A (institutions whose Ground and Appearance scores are both below the within-stratum median).</li>
+</ul>
+</section>
+
+<section>
+<h2>Key findings</h2>
+<ul>
+  <li>On the locked test cohort (test years 2017–2018), joint-weak G+A predicts closure within five years at AUROC ≈ 0.864.</li>
+  <li>Institution-cluster bootstrap 95 % CI ≈ [0.806, 0.914] — almost identical to the original analytic interval at the lower bound.</li>
+  <li>The signal survives four sliding temporal folds at AUROC 0.77–0.86. Within-A/G ordering (joint-weak above G-only above A-only above divergence) holds in every fold.</li>
+  <li>The geometry has a higher AUROC point estimate than every tested single-variable baseline. Cluster-bootstrap paired-difference 95 % CI vs the strongest baseline is [+0.002, +0.138]; about 98 % of bootstrap samples are positive. This is a higher point estimate, not a definitive statistical-superiority claim.</li>
+  <li>For the secondary enrollment-collapse target, simple low six-year graduation rate alone has a higher AUROC point estimate than the A/G geometries. The framework does not beat baselines for that target.</li>
+  <li>Closure signal is detectable across the full T-1 through T-5 horizon — a multi-year early-warning pattern, not a coincident T-1 alarm.</li>
+</ul>
+</section>
+
+<section>
+<h2>What is not validated</h2>
+<ul>
+  <li>Public-sector four-year institutions (closure events too rare in the panel window).</li>
+  <li>For-profit institutions (endowment-cushion is structurally absent; admissions/graduation reporting is sparser).</li>
+  <li>Two-year and community-college institutions (the four-year-cohort Appearance layer does not apply).</li>
+  <li>Enrollment-collapse targets (baseline-dominated).</li>
+  <li>Head-to-head comparison against the federal Financial Responsibility composite on the locked test cohort (data-coverage gap).</li>
+  <li>Heightened Cash Monitoring as an anchor (source-blocked in this run).</li>
+</ul>
+</section>
+
+<section>
+<h2>Limitations</h2>
+<div class="limitation">
+  <strong>Read with care.</strong> AUROC point estimates and CIs are summary numbers from a single time-block split (Phase 15) plus four sliding folds (Phase 19). Joint-weak’s edge over the strongest single-variable baseline is small at the cluster-bootstrap paired-difference lower bound (+0.002). Top-decile flagging captures only a subset (about 13–27 %) of pre-closure rows across the T-1 through T-5 horizon. This is a research artifact in a narrow lane, not a closure-prediction product.
+</div>
+</section>
+
+<section>
+<h2>Reading order</h2>
+<ol>
+  <li><a href="claim-boundary.html">Claim Boundary Note</a> — what may and may not be claimed.</li>
+  <li><a href="phase19-decision.html">Phase 19 Hardening Decision</a> — the integrated decision document.</li>
+  <li><a href="cluster-bootstrap.html">Cluster Bootstrap</a>, <a href="temporal-folds.html">Temporal Folds</a>, <a href="lead-time.html">Lead-Time</a> — the three positive hardening tracks.</li>
+  <li><a href="ed-fr-baseline.html">ED Financial Responsibility Baseline</a> and <a href="hcm-anchor.html">HCM Anchor Note</a> — the partially-runnable and source-blocked tracks.</li>
+</ol>
+<p><a href="../evidence.html">← Back to Evidence</a></p>
+</section>
+
+</main>
+
+<footer class="site">
+  <div class="site-inner">
+    <p>Higher-Ed A/G Research Extension · Public research portal · No institution-level scores or rankings published.</p>
+    <p>Source data: U.S. Department of Education / NCES IPEDS (public). Derived presentation, scoring artifacts, compiled documentation, and research outputs are not granted for commercial reuse without permission. See <a href="../commercial-use.html">Commercial use</a>.</p>
+  </div>
+</footer>
+
+</body>
+</html>

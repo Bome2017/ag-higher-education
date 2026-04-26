@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Phase 19 Hardening Decision for the Higher-Ed A/G Research Extension. Integrated decision across cluster bootstrap, temporal folds, ED FR baseline, HCM, and lead-time tracks.">
+<title>Phase 19 Hardening Decision — Higher-Ed A/G Research Extension</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site">
+  <div class="site-inner">
+    <div class="site-title">Higher-Ed A/G Research Extension
+      <small>A public IPEDS study of institutional closure risk in a validated higher-ed subdomain.</small>
+    </div>
+    <nav class="primary"><ul>
+      <li><a href="../index.html">Overview</a></li>
+      <li><a href="../methodology.html">Methodology</a></li>
+      <li><a href="../validation.html">Validation</a></li>
+      <li><a class="active" href="../evidence.html">Evidence</a></li>
+      <li><a href="../limitations.html">Limitations</a></li>
+      <li><a href="../commercial-use.html">Commercial use</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<main>
+
+<section>
+<h1>Phase 19 Hardening Decision</h1>
+<p>Phase 19 was a targeted hardening phase for the locked validated lane. Its purpose was not to expand the claim, but to test whether the locked closure result survives stronger uncertainty models, multi-fold temporal validation, an external regulator-side baseline, an alternative anchor, and a lead-time analysis.</p>
+</section>
+
+<section>
+<h2>Tracks and findings</h2>
+<ol>
+  <li><strong>Institution-cluster bootstrap.</strong> 1,000 UNITID-level resamples on the locked test cohort. Joint-weak AUROC point estimate 0.864; cluster-bootstrap 95 % CI ≈ [0.806, 0.914]. Paired-difference vs the strongest single-variable baseline: mean +0.072, 95 % CI ≈ [+0.002, +0.138], about 98 % of bootstrap samples positive. The lock survives this hardening.</li>
+  <li><strong>Temporal multi-fold validation.</strong> Four sliding train/test time-block splits. Joint-weak AUROC 0.77–0.86 across all four folds; tied with simple low six-year graduation rate alone in Fold 1 (2015 test); A/G has a higher point estimate over the best single-variable baseline by +0.05 to +0.07 in Folds 2, 3, and 4. The signal is not specific to the locked 2017–2018 window.</li>
+  <li><strong>ED Financial Responsibility baseline (descriptive only).</strong> Federal composite-score data was fetched via the Urban Institute Education Data Portal API (a public mirror). Coverage stops at 2016, so the head-to-head test on the locked test cohort (2017–2018) cannot be run. On the descriptive train cohort 2014–2016, the federal composite produces AUROC ≈ 0.747; the simple low-graduation-rate baseline produces AUROC ≈ 0.788 on the same cohort. The federal composite is a real closure-relevant signal, but no head-to-head superiority claim against A/G is made.</li>
+  <li><strong>Heightened Cash Monitoring (HCM) anchor.</strong> Source-blocked in this run; documented as a candidate for future work. No HCM evidence is used to support the locked claim.</li>
+  <li><strong>Closure lead-time analysis.</strong> Among 108 closing FASB × Sector 2 institutions, joint-weak scores are elevated above the within-cohort median across the entire T-1 through T-5 horizon. At the locked top-decile cutoff, about 13 % of pre-closure rows are flagged at T-1 and about 25–27 % at T-4 and T-5. This is a multi-year early-warning pattern, not a coincident T-1 alarm; it is also not a perfect screen.</li>
+</ol>
+</section>
+
+<section>
+<h2>Integrated decision</h2>
+<div class="finding">
+  The closure result holds. The classification is updated to <strong>“hardened FASB × Sector 2 private nonprofit four-year closure prediction”</strong> and stays inside the same validated lane. The hardening confirms the lock under appropriate clustered uncertainty and multi-fold temporal stability. It does not extend the validated lane.
+</div>
+</section>
+
+<section>
+<h2>What changed in this phase</h2>
+<ul>
+  <li>The reported confidence interval is now the institution-cluster bootstrap ≈ [0.806, 0.914]; the original analytic interval ≈ [0.801, 0.928] is preserved for compatibility.</li>
+  <li>Multi-fold temporal evidence is added. The result is not specific to a single test window.</li>
+  <li>The federal composite-score comparator is documented honestly as “runnable on a descriptive cohort, not on the locked test cohort.”</li>
+  <li>HCM is documented as a future-work candidate.</li>
+  <li>A multi-year lead-time pattern is documented, with explicit recall figures so the result is not over-claimed as a perfect screen.</li>
+</ul>
+</section>
+
+<section>
+<h2>What did not change</h2>
+<ul>
+  <li>The validated lane (FASB × Sector 2 private nonprofit four-year).</li>
+  <li>The validated target (closure within five years).</li>
+  <li>The forbidden-claim list, including the prohibition on universal higher-ed claims, on enrollment-collapse-prediction superiority, and on production-style framings.</li>
+  <li>The decision to publish no per-institution scores and no institution-level rankings.</li>
+</ul>
+<p><a href="../evidence.html">← Back to Evidence</a></p>
+</section>
+
+</main>
+
+<footer class="site">
+  <div class="site-inner">
+    <p>Higher-Ed A/G Research Extension · Public research portal · No institution-level scores or rankings published.</p>
+    <p>Source data: U.S. Department of Education / NCES IPEDS (public). Derived presentation, scoring artifacts, compiled documentation, and research outputs are not granted for commercial reuse without permission. See <a href="../commercial-use.html">Commercial use</a>.</p>
+  </div>
+</footer>
+
+</body>
+</html>

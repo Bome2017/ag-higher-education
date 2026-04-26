@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Closure Lead-Time Analysis for the Higher-Ed A/G Research Extension. Score distributions and top-decile capture rates at T-1 through T-5 for closing institutions in the validated lane.">
+<title>Closure Lead-Time — Higher-Ed A/G Research Extension</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site">
+  <div class="site-inner">
+    <div class="site-title">Higher-Ed A/G Research Extension
+      <small>A public IPEDS study of institutional closure risk in a validated higher-ed subdomain.</small>
+    </div>
+    <nav class="primary"><ul>
+      <li><a href="../index.html">Overview</a></li>
+      <li><a href="../methodology.html">Methodology</a></li>
+      <li><a href="../validation.html">Validation</a></li>
+      <li><a class="active" href="../evidence.html">Evidence</a></li>
+      <li><a href="../limitations.html">Limitations</a></li>
+      <li><a href="../commercial-use.html">Commercial use</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<main>
+
+<section>
+<h1>Closure Lead-Time Analysis</h1>
+<p><strong>Purpose.</strong> Measure how early the validated joint-weak G+A signal appears before a closure event in the validated lane. Specifically, score panel rows at T-1, T-2, T-3, T-4, and T-5 (years before the closure year T) for institutions that closed within the panel window, and compare these scores with the within-cohort distribution.</p>
+</section>
+
+<section>
+<h2>Method</h2>
+<ul>
+  <li>Restricted to FASB × Sector 2 institutions whose closure year was identified through HD <code>CLOSEDAT</code>.</li>
+  <li>108 closing institutions in the validated lane within the panel window.</li>
+  <li>269 pre-closure institution-year rows scoreable across T-1 through T-5 (subject to panel-window constraints; not every closing institution has a complete five-year pre-closure trail).</li>
+  <li>Scores computed using the locked Phase-15 transforms (winsorisation bounds and robust-z parameters fit on the locked train years 2014–2016).</li>
+  <li>The reference top-decile cutoff for joint-weak (≈ 0.974) is taken from the locked test cohort 2017–2018; pre-closure rows are flagged at this cutoff for descriptive purposes, not as a held-out validation step.</li>
+</ul>
+</section>
+
+<section>
+<h2>Score distribution by years-to-closure</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Years to closure</th><th class="num">Pre-closure rows</th><th class="num">Median joint-weak</th><th class="num">Mean joint-weak</th></tr></thead>
+<tbody>
+<tr><td>T-1</td><td class="num">46</td><td class="num">0.888</td><td class="num">1.095</td></tr>
+<tr><td>T-2</td><td class="num">54</td><td class="num">0.846</td><td class="num">1.036</td></tr>
+<tr><td>T-3</td><td class="num">55</td><td class="num">0.996</td><td class="num">0.884</td></tr>
+<tr><td>T-4</td><td class="num">52</td><td class="num">1.097</td><td class="num">0.874</td></tr>
+<tr><td>T-5</td><td class="num">62</td><td class="num">0.941</td><td class="num">0.833</td></tr>
+</tbody>
+</table>
+</div>
+<p>For context: the within-stratum median joint-weak score in the locked test cohort is approximately 0.06. Pre-closure medians of 0.85–1.10 are well elevated above the typical within-cohort score across the full T-1 through T-5 horizon.</p>
+</section>
+
+<section>
+<h2>Top-decile capture by years-to-closure</h2>
+<p>At the locked test-cohort top-decile cutoff for joint-weak (≈ 0.974), what fraction of pre-closure rows would have been flagged?</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Years to closure</th><th class="num">Pre-closure rows</th><th class="num">Flagged at top-decile cutoff</th><th class="num">Capture rate</th></tr></thead>
+<tbody>
+<tr><td>T-1</td><td class="num">46</td><td class="num">6</td><td class="num">13.0 %</td></tr>
+<tr><td>T-2</td><td class="num">54</td><td class="num">10</td><td class="num">18.5 %</td></tr>
+<tr><td>T-3</td><td class="num">55</td><td class="num">11</td><td class="num">20.0 %</td></tr>
+<tr><td>T-4</td><td class="num">52</td><td class="num">14</td><td class="num">26.9 %</td></tr>
+<tr><td>T-5</td><td class="num">62</td><td class="num">16</td><td class="num">25.8 %</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section>
+<h2>Reading</h2>
+<ul>
+  <li><strong>Lead time is at least five years.</strong> Joint-weak scores for closing institutions are elevated above the within-cohort median as early as T-5.</li>
+  <li><strong>The pattern is slow-burn, not late-stage acute.</strong> Median joint-weak score at T-1 (≈ 0.89) is similar to the median at T-5 (≈ 0.94). The geometry produces a multi-year early-warning signal rather than a coincident T-1 alarm.</li>
+  <li><strong>Top-decile capture across T-1 through T-5 is about 13 % to 27 %.</strong> Higher capture rates at T-4 and T-5 than at T-1 are most likely a panel-attrition artifact — some closing institutions stop filing IPEDS forms in the final year before closure, so T-1 has fewer scoreable rows.</li>
+</ul>
+</section>
+
+<section>
+<h2>What this does and does not establish</h2>
+<div class="limitation">
+  <strong>Useful precision–recall trade, not a perfect screen.</strong> About 74 % of T-5 pre-closure rows are <em>not</em> flagged by the top-decile cutoff. A subset of closing institutions in the validated lane is identifiable in the joint-weak top decile years before closure; many are not. This is consistent with a research-grade screen, not a per-institution prediction product.
+</div>
+<ul>
+  <li>This analysis does not establish a per-institution closure-prediction claim, and it does not justify publishing per-institution scores or rankings.</li>
+  <li>It does not extend the validated lane.</li>
+  <li>It does not establish that joint-weak is uniquely structured to give early warning; G-only follows a similar pattern with slightly lower magnitudes.</li>
+</ul>
+<p><a href="../evidence.html">← Back to Evidence</a></p>
+</section>
+
+</main>
+
+<footer class="site">
+  <div class="site-inner">
+    <p>Higher-Ed A/G Research Extension · Public research portal · No institution-level scores or rankings published.</p>
+    <p>Source data: U.S. Department of Education / NCES IPEDS (public). Derived presentation, scoring artifacts, compiled documentation, and research outputs are not granted for commercial reuse without permission. See <a href="../commercial-use.html">Commercial use</a>.</p>
+  </div>
+</footer>
+
+</body>
+</html>

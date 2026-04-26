@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Public IPEDS research extension of the A/G framework. A hardened, narrow validation result for closure within five years among FASB-filing private nonprofit four-year institutions. Not a universal higher-ed model and not a production system.">
+<title>Higher-Ed A/G Research Extension</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site">
+  <div class="site-inner">
+    <div class="site-title">Higher-Ed A/G Research Extension
+      <small>A public IPEDS study of institutional closure risk in a validated higher-ed subdomain.</small>
+    </div>
+    <nav class="primary"><ul>
+      <li><a class="active" href="index.html">Overview</a></li>
+      <li><a href="methodology.html">Methodology</a></li>
+      <li><a href="validation.html">Validation</a></li>
+      <li><a href="evidence.html">Evidence</a></li>
+      <li><a href="limitations.html">Limitations</a></li>
+      <li><a href="commercial-use.html">Commercial use</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <h1>Higher-Ed A/G Research Extension</h1>
+  <p class="subtitle">A public IPEDS study of institutional closure risk in a validated higher-ed subdomain.</p>
+  <div class="badges">
+    <span class="badge ok">Research-grade</span>
+    <span class="badge ok">Hardened narrow validation</span>
+    <span class="badge warn">Not a universal higher-ed model</span>
+    <span class="badge warn">Not production</span>
+  </div>
+  <p style="margin-bottom:0; max-width:780px;">This site documents a research extension of the A/G framework to U.S. higher education data. The validated result is intentionally narrow: FASB-filing private nonprofit four-year institutions, evaluated for closure within five years. The site does not publish institution rankings or operational risk scores.</p>
+</section>
+
+<section>
+  <h2>What the evidence says</h2>
+  <div class="cards">
+    <div class="card">
+      <h4>Strong narrow closure signal</h4>
+      <p>Joint-weak G+A geometry predicts closure within five years for FASB × Sector 2 private nonprofit four-year institutions.</p>
+    </div>
+    <div class="card">
+      <h4>Robustness checks passed</h4>
+      <p>The result survives institution-cluster bootstrap uncertainty and four sliding temporal folds.</p>
+    </div>
+    <div class="card">
+      <h4>Not universal</h4>
+      <p>Public, for-profit, two-year, and enrollment-collapse claims remain unvalidated or mixed.</p>
+    </div>
+    <div class="card">
+      <h4>Interpretive value</h4>
+      <p>The A/G structure separates financial ground weakness from institutional appearance, but the validated closure lane is narrow.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>At a glance</h2>
+  <div class="glance">
+    <dl>
+      <dt>Final status</dt><dd>locked partial domain-specific extension</dd>
+      <dt>Validated lane</dt><dd>FASB × Sector 2 private nonprofit four-year</dd>
+      <dt>Target</dt><dd>closure within five years</dd>
+      <dt>Primary geometry</dt><dd>joint-weak G+A</dd>
+      <dt>AUROC</dt><dd>about 0.864</dd>
+      <dt>Cluster-bootstrap 95% CI</dt><dd>about [0.806, 0.914]</dd>
+      <dt>Temporal folds</dt><dd>about 0.77–0.86 AUROC</dd>
+      <dt>Baseline comparison</dt><dd>small positive edge over strongest tested baseline; not definitive universal superiority</dd>
+      <dt>Product status</dt><dd>research-grade / not production</dd>
+    </dl>
+  </div>
+</section>
+
+<section>
+  <h2>Main finding</h2>
+  <div class="finding">
+    The higher-ed extension has a hardened, domain-specific validation result: joint-weak G+A geometry predicts closure within five years for FASB × Sector 2 private nonprofit four-year institutions. The result survives institution-cluster bootstrap uncertainty and temporal multi-fold validation. It should not be generalized to all higher education.
+  </div>
+</section>
+
+<section>
+  <h2>Key validation</h2>
+  <div class="table-wrap">
+  <table>
+    <thead>
+      <tr><th>Finding</th><th class="num">Result</th><th>Interpretation</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Closure AUROC</td><td class="num">0.864</td><td>Strong held-out result in validated lane</td></tr>
+      <tr><td>Cluster-bootstrap CI</td><td class="num">[0.806, 0.914]</td><td>Robust to institution-level resampling</td></tr>
+      <tr><td>Temporal folds</td><td class="num">0.77–0.86</td><td>Signal persists across folds</td></tr>
+      <tr><td>Paired edge vs best baseline</td><td class="num">+0.072</td><td>Small positive edge; not a universal claim</td></tr>
+      <tr><td>Enrollment-collapse target</td><td class="num">baseline-dominated</td><td>Not a validated A/G superiority claim</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2>Claim boundary</h2>
+  <div class="boundary">
+    This is not a college-failure prediction product, not an accreditation tool, not an admissions tool, not investment advice, not a ranking system, and not a production model.
+  </div>
+  <p>For the full canonical list of allowed and forbidden claims, see <a href="docs/claim-boundary.html">Claim Boundary Note</a>.</p>
+</section>
+
+</main>
+
+<footer class="site">
+  <div class="site-inner">
+    <p>Higher-Ed A/G Research Extension · Public research portal · No institution-level scores or rankings published.</p>
+    <p>Source data: U.S. Department of Education / NCES IPEDS (public). Derived presentation, scoring artifacts, compiled documentation, and research outputs are not granted for commercial reuse without permission. See <a href="commercial-use.html">Commercial use</a>.</p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Validation results for the Higher-Ed A/G Research Extension: held-out AUROC, cluster-bootstrap CI, temporal multi-fold AUROC, baseline comparison, and lead-time pattern in the validated lane.">
+<title>Validation — Higher-Ed A/G Research Extension</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site">
+  <div class="site-inner">
+    <div class="site-title">Higher-Ed A/G Research Extension
+      <small>A public IPEDS study of institutional closure risk in a validated higher-ed subdomain.</small>
+    </div>
+    <nav class="primary"><ul>
+      <li><a href="index.html">Overview</a></li>
+      <li><a href="methodology.html">Methodology</a></li>
+      <li><a class="active" href="validation.html">Validation</a></li>
+      <li><a href="evidence.html">Evidence</a></li>
+      <li><a href="limitations.html">Limitations</a></li>
+      <li><a href="commercial-use.html">Commercial use</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<main>
+
+<section>
+<h1>Validation</h1>
+<p>This section reports the held-out validation evidence behind the locked higher-ed claim. Numbers come from documented Phase-15 and Phase-19 outputs; none of the modelling was re-run for this site.</p>
+<p><strong>Validated lane:</strong> FASB × Sector 2 — private nonprofit four-year institutions. <strong>Validated target:</strong> closure within five years. <strong>Primary geometry:</strong> joint-weak G+A.</p>
+<div class="limitation">
+  <strong>Scope.</strong> Public-sector, for-profit, and two-year results are not validated. Enrollment-collapse targets are baseline-dominated. The closure result is the only claim that survives the full Phase-19 hardening.
+</div>
+</section>
+
+<section>
+<h2>1. Primary closure validation</h2>
+<p>On the locked test cohort (test years 2017–2018; transforms fit on train years 2014–2016 only), the joint-weak G+A geometry produces:</p>
+<ul>
+  <li><strong>AUROC point estimate ≈ 0.864.</strong></li>
+  <li><strong>Institution-cluster bootstrap 95 % CI ≈ [0.806, 0.914]</strong> (1,000 UNITID-level resamples).</li>
+  <li>Original analytic Hanley-McNeil 95 % CI ≈ [0.801, 0.928]; the cluster-bootstrap and analytic intervals are nearly identical at the lower bound.</li>
+  <li>Top-decile lift over the test-cohort base rate (≈ 2.4 %) of about <strong>5.96 ×</strong>.</li>
+</ul>
+<p>The closure label is built strictly from future events: an institution-year T receives a positive label only when the institution’s closure year falls in {T+1, …, T+5}.</p>
+</section>
+
+<section>
+<h2>2. Temporal multi-fold validation</h2>
+<p>Four sliding time-block splits (the closure label requires a five-year forward window, so the latest testable T is 2018):</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Fold</th><th>Train years</th><th>Test years</th><th class="num">Test rows</th><th class="num">Closure positives</th><th class="num">Joint-weak AUROC</th></tr></thead>
+<tbody>
+<tr><td>Fold 1</td><td>2014</td><td>2015</td><td class="num">1,075</td><td class="num">21</td><td class="num">0.772</td></tr>
+<tr><td>Fold 2</td><td>2014–2015</td><td>2016</td><td class="num">1,070</td><td class="num">21</td><td class="num">0.840</td></tr>
+<tr><td>Fold 3 (locked)</td><td>2014–2016</td><td>2017–2018</td><td class="num">2,168</td><td class="num">52</td><td class="num">0.864</td></tr>
+<tr><td>Fold 4</td><td>2014–2017</td><td>2018</td><td class="num">1,080</td><td class="num">30</td><td class="num">0.854</td></tr>
+</tbody>
+</table>
+</div>
+<p>Joint-weak AUROC stays in [0.77, 0.86] across all four folds. Within-A/G ordering (joint-weak above G-only above A-only above divergence) holds in every fold.</p>
+<p><strong>Honest record on Fold 1.</strong> In Fold 1 (2015 test, 21 closure positives), the joint-weak AUROC of 0.772 is essentially tied with the simple low six-year graduation rate baseline (AUROC 0.773). The A/G geometry’s edge over single-variable baselines is uneven across folds; in three of four folds it shows a +0.05 to +0.07 AUROC point-estimate edge, and in one of four folds the edge effectively disappears. Phase-19 reports this rather than choosing a favourable fold to headline.</p>
+</section>
+
+<section>
+<h2>3. Baseline comparison</h2>
+<p>On the locked test cohort the joint-weak G+A geometry has the highest AUROC point estimate among tested predictors. The strongest single-variable baseline is the negated net-position cushion (AUROC ≈ 0.792). Cluster-bootstrap paired-difference between joint-weak and that baseline:</p>
+<ul>
+  <li>Mean difference ≈ <strong>+0.072</strong>.</li>
+  <li>95 % cluster-bootstrap CI ≈ <strong>[+0.002, +0.138]</strong>.</li>
+  <li>About 98 % of bootstrap samples have a positive paired difference.</li>
+</ul>
+<div class="limitation">
+  <strong>How to read this.</strong> The lower bound of the paired-difference CI is +0.002 — narrowly above zero. The defensible reading is that the A/G geometry has a <em>higher AUROC point estimate</em> than the strongest tested single-variable baseline. This is not a definitive statistical-superiority claim. CIs of the two predictors overlap modestly.
+</div>
+<p>For the enrollment-collapse target, simple low six-year graduation rate alone has a higher AUROC point estimate than joint-weak. The A/G framework does not beat baselines for that target. See <a href="docs/temporal-folds.html">Temporal Folds</a> for the per-target breakdown.</p>
+<div class="limitation">
+  <strong>Prognostic vs diagnostic reading.</strong> The
+  paired-edge AUROC numbers above are the <em>prognostic</em>
+  reading: a binary closure-within-five-years alarm. Higher-ed
+  is also an example where the winning <em>diagnostic</em>
+  geometry differs from banking and corporate: <strong>joint-weak
+  G+A</strong>, not G alone and not divergence, carries the
+  validated closure signal in the FASB × Sector 2 lane, and
+  divergence is the lowest-ranked geometry in every Phase-19
+  fold. That regime-shape claim is supported across folds even
+  when the prognostic edge over the strongest baseline narrows
+  (Fold 1). AUROC remains a valid prognostic test; the
+  diagnostic axis answers a different question.
+</div>
+</section>
+
+<section>
+<h2>4. ED Financial Responsibility composite</h2>
+<p>The federal Financial Responsibility composite was fetched as a baseline comparator via the Urban Institute Education Data Portal API (a public mirror of federal data). Its public coverage in the mirror used here stops at year 2016, while the locked test cohort is 2017–2018.</p>
+<p>On the descriptive train cohort (2014–2016 FASB × Sector 2), the negated composite score has AUROC ≈ <strong>0.747</strong> (95 % analytic CI ≈ [0.686, 0.808]) for closure within five years. The simple low-graduation-rate baseline on the same cohort has AUROC ≈ 0.788.</p>
+<div class="limitation">
+  <strong>What is and is not claimed.</strong> The federal composite is a real closure-relevant signal on this descriptive cohort. Whether the A/G geometry beats it on the locked test cohort is <em>not testable</em> in this run — the public mirror does not cover the locked test years. This site does not assert that A/G outperforms the federal composite.
+</div>
+</section>
+
+<section>
+<h2>5. Heightened Cash Monitoring (HCM)</h2>
+<p>The federal Heightened Cash Monitoring list was attempted as a separate distress anchor. The federal endpoints hosting the list were not reachable from the build environment used for this work, and no public mirror of HCM is available in the same data portal that hosts the financial-responsibility composite. As a result, no HCM evidence is presented here.</p>
+<p>HCM remains a candidate for future work. See <a href="docs/hcm-anchor.html">HCM Anchor Note</a>.</p>
+</section>
+
+<section>
+<h2>6. Lead-time pattern</h2>
+<p>Among 108 closing institutions in the FASB × Sector 2 panel, joint-weak scores were elevated above the within-cohort median across the entire T-1 to T-5 horizon (median joint-weak ≈ 0.85–1.10, well above the test-cohort median of about 0.06). At the locked top-decile cutoff:</p>
+<ul>
+  <li>About <strong>13 %</strong> of pre-closure rows are flagged at T-1.</li>
+  <li>About <strong>26–27 %</strong> of pre-closure rows are flagged at T-4 and T-5.</li>
+</ul>
+<p>The signal is therefore a multi-year early-warning pattern, not a coincident T-1 alarm. The flagging rates are consistent with a useful precision–recall trade — not a perfect screen.</p>
+<div class="limitation">
+  <strong>What lead-time does not establish.</strong> Top-decile flagging captures only a subset of future closures across the horizon. It is not a per-institution closure-prediction product, and this site publishes no per-institution scores or rankings.
+</div>
+</section>
+
+<section>
+<h2>7. Bottom line</h2>
+<ul>
+  <li>The validated lane (FASB × Sector 2 closure within five years) has a strong, narrow, hardened result.</li>
+  <li>Beyond that lane, the higher-ed universe remains unvalidated.</li>
+  <li>The A/G framework does not beat baselines for enrollment-collapse targets.</li>
+  <li>This is a research-grade artifact, not a production system.</li>
+</ul>
+</section>
+
+</main>
+
+<footer class="site">
+  <div class="site-inner">
+    <p>Higher-Ed A/G Research Extension · Public research portal · No institution-level scores or rankings published.</p>
+    <p>Source data: U.S. Department of Education / NCES IPEDS (public). Derived presentation, scoring artifacts, compiled documentation, and research outputs are not granted for commercial reuse without permission. See <a href="commercial-use.html">Commercial use</a>.</p>
+  </div>
+</footer>
+
+</body>
+</html>

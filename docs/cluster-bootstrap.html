@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Cluster Bootstrap summary for the Higher-Ed A/G Research Extension. Institution-level resampling of the closure AUROC on the locked test cohort.">
+<title>Cluster Bootstrap — Higher-Ed A/G Research Extension</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site">
+  <div class="site-inner">
+    <div class="site-title">Higher-Ed A/G Research Extension
+      <small>A public IPEDS study of institutional closure risk in a validated higher-ed subdomain.</small>
+    </div>
+    <nav class="primary"><ul>
+      <li><a href="../index.html">Overview</a></li>
+      <li><a href="../methodology.html">Methodology</a></li>
+      <li><a href="../validation.html">Validation</a></li>
+      <li><a class="active" href="../evidence.html">Evidence</a></li>
+      <li><a href="../limitations.html">Limitations</a></li>
+      <li><a href="../commercial-use.html">Commercial use</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<main>
+
+<section>
+<h1>Cluster Bootstrap</h1>
+<p><strong>Purpose.</strong> Replace and supplement the original analytic Hanley-McNeil AUROC interval with an institution-level (UNITID) bootstrap, so that test rows of the same institution stay together when the AUROC distribution is resampled.</p>
+</section>
+
+<section>
+<h2>Method</h2>
+<ul>
+  <li>Restricted to the locked validation cell: FASB × Sector 2, closure-within-five-years label.</li>
+  <li>Test cohort: 3,232 rows, 1,644 unique institutions, 117 closure-positive rows from 71 distinct closure-positive institutions.</li>
+  <li>Resampling unit: institution (UNITID), with replacement, sample size equal to the number of unique institutions.</li>
+  <li>1,000 bootstrap samples; deterministic RNG seed.</li>
+  <li>Predictors compared: joint-weak G+A; G-only; A-only; divergence; the strongest tested single-variable baselines (negated net-position cushion, negated cash operating margin, negated six-year graduation rate).</li>
+</ul>
+</section>
+
+<section>
+<h2>Key findings</h2>
+<ul>
+  <li><strong>Joint-weak AUROC point estimate ≈ 0.864.</strong> Cluster-bootstrap 95 % percentile interval ≈ <strong>[0.806, 0.914]</strong>. The original analytic Hanley-McNeil interval was [0.801, 0.928]; the cluster interval is essentially identical at the lower bound and slightly tighter at the upper bound.</li>
+  <li>Per-predictor cluster CIs (median, then 2.5 %–97.5 %): joint-weak 0.864 [0.806, 0.914]; G-only 0.798 [0.738, 0.848]; A-only 0.728 [0.646, 0.800]; divergence 0.680 [0.590, 0.759]; negated net-position cushion 0.792 [0.732, 0.846]; negated six-year graduation rate 0.760 [0.699, 0.812]; negated cash operating margin 0.632 [0.554, 0.702].</li>
+  <li><strong>Paired-difference distribution, joint-weak minus negated net-position cushion (the strongest baseline):</strong> mean ≈ +0.072; 95 % cluster-bootstrap CI ≈ [+0.002, +0.138]; about 98 % of resamples positive.</li>
+  <li>Paired-difference vs negated low six-year graduation rate (the simplest A baseline): mean ≈ +0.105; 95 % CI ≈ [+0.022, +0.181]; about 99 % of resamples positive.</li>
+</ul>
+</section>
+
+<section>
+<h2>How to read this</h2>
+<div class="limitation">
+  <strong>Higher point estimate, not definitive superiority.</strong> The cluster-bootstrap paired-difference 95 % CI vs the strongest baseline has its lower bound at +0.002 — narrowly above zero. The defensible reading is “higher AUROC point estimate over tested single-variable baselines,” not “statistically superior to the baselines.”
+</div>
+<div class="limitation">
+  <strong>Within-sample uncertainty only.</strong> Cluster bootstrap addresses the right uncertainty model for repeated-institution panel rows. It does not address other forms of model misspecification, distribution shift across years, or stratum mis-classification. Multi-fold temporal stability is the separate <a href="temporal-folds.html">Temporal Folds</a> track.
+</div>
+</section>
+
+<section>
+<h2>Limitations</h2>
+<ul>
+  <li>The resample preserves the locked train/test split; the model is not refit on bootstrapped train data. This is the standard test-metric bootstrap holding the trained model fixed.</li>
+  <li>The number of closure-positive UNITIDs is 71; cluster-bootstrap uncertainty is fundamentally constrained by that count.</li>
+  <li>The result is for the validated lane only and does not generalise to other strata or other targets.</li>
+</ul>
+<p><a href="../evidence.html">← Back to Evidence</a></p>
+</section>
+
+</main>
+
+<footer class="site">
+  <div class="site-inner">
+    <p>Higher-Ed A/G Research Extension · Public research portal · No institution-level scores or rankings published.</p>
+    <p>Source data: U.S. Department of Education / NCES IPEDS (public). Derived presentation, scoring artifacts, compiled documentation, and research outputs are not granted for commercial reuse without permission. See <a href="../commercial-use.html">Commercial use</a>.</p>
+  </div>
+</footer>
+
+</body>
+</html>
